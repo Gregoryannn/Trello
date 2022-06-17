@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\client",
+    "\\client\\public",
+    "\\client\\src",
+    "\\server"
   ],
-  "SelectedNode": "\\C:\\Users\\asus\\Source\\Repos\\trello-clone",
+  "SelectedNode": "\\server\\tsconfig.json",
   "PreviewInSolutionExplorer": false
 }
