@@ -4,7 +4,6 @@ import { BsGrid3X3Gap } from 'react-icons/bs';
 import { FaRegBell, FaTrello } from 'react-icons/fa';
 import { VscHome } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
-
 const Navbar = () => {
     return (
         <div
@@ -47,7 +46,7 @@ const Navbar = () => {
 
                 <div className="h-8 flex flex-1 text-white text-opacity-50 items-center justify-center space-x-1">
                     <FaTrello />
-                    <p className="text-xl font-extrabold">Trello</p>
+                    <p className="text-xl pr-40 font-extrabold">Trello</p>
                 </div>
 
                 <div className="ml-auto flex space-x-1 items-center">
@@ -84,5 +83,4 @@ const Navbar = () => {
         </div>
     );
 };
-
 export default Navbar;
