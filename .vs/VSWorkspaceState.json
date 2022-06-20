@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\components",
+    "\\client\\src\\Pages"
   ],
-  "SelectedNode": "\\C:\\Users\\asus\\Source\\Repos\\Trello",
+  "SelectedNode": "\\client\\src\\types.ts",
   "PreviewInSolutionExplorer": false
 }
