@@ -1,15 +1,16 @@
-import React from 'react';
 import ReactModal from 'react-modal';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Board from './Pages/Board';
-import HomePage from './Pages/HomePage';
+import Boards from './Pages/Boards';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import PageNotFound from './Pages/PageNotFound';
+import PrivateRoute from './utils/PrivateRoute';
 
 ReactModal.setAppElement('#root');
+
 const App = () => {
     return (
         <div className="w-full h-screen flex flex-col">
@@ -20,10 +21,11 @@ const App = () => {
             >
                 <Switch>
                     <Route exact path="/" component={Login} />
+                    <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
-                    <Route path="/boards" component={HomePage} />
-                    <Route path="/b/:boardId" component={Board} />
-                    <Route component={PageNotFound} />
+                    <PrivateRoute path="/boards" component={Boards} />
+                    <PrivateRoute path="/b/:boardId" component={Board} />
+                    <Route path="*" component={PageNotFound} />
                 </Switch>
             </div>
         </div>

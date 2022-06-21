@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\client",
     "\\client\\src",
     "\\client\\src\\components",
-    "\\client\\src\\Pages"
+    "\\client\\src\\Pages",
+    "\\server",
+    "\\server\\src"
   ],
-  "SelectedNode": "\\client\\src\\types.ts",
+  "SelectedNode": "\\server\\src\\index.ts",
   "PreviewInSolutionExplorer": false
 }
