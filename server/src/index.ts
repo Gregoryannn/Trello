@@ -19,15 +19,12 @@ declare module 'express-session' {
         userId?: any;
     }
 }
-
 // load environment variables
 dotenv.config();
-
 const main = async () => {
     // database connection
     await connectDB();
     const app = express();
-
     // cors policy
     // app.options('*', cors());
     app.use(
@@ -36,17 +33,15 @@ const main = async () => {
             credentials: true,
         })
     );
-
     const RedisStore = connectRedis(session);
     const redis = new Redis();
-
     // session
     app.use(
         session({
             name: COKKIE_NAME,
             store: new RedisStore({ client: redis, disableTouch: true }),
             cookie: {
-                maxAge: 1000 * 60 * 60, // 1 day
+                maxAge: 1000 * 60 * 30,
                 httpOnly: true,
                 secure: __prod__,
                 sameSite: 'lax', // csrf
@@ -56,7 +51,6 @@ const main = async () => {
             resave: false,
         })
     );
-
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             resolvers: [UserResolver],
@@ -65,9 +59,7 @@ const main = async () => {
         plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     });
     await apolloServer.start();
-
     apolloServer.applyMiddleware({ app, cors: false });
-
     app.listen(4000, 'localhost', () => {
         console.log(
             `🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`
