@@ -1,12 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\client\\src",
-    "\\client\\src\\components",
-    "\\client\\src\\Pages",
+    "\\.husky",
+    "\\client\\src\\graphql\\mutations",
+    "\\client\\src\\graphql\\queries",
     "\\server",
     "\\server\\src"
   ],
-  "SelectedNode": "\\server\\src\\index.ts",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

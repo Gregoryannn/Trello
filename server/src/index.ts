@@ -1,4 +1,5 @@
-﻿import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
+﻿import path from 'path';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
@@ -10,7 +11,6 @@ import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import connectDB from './config/db';
 import { COKKIE_NAME, __prod__ } from './constants';
-import UserResolver from './resolvers/UserResolver';
 import MyContext from './types';
 
 declare module 'express-session' {
@@ -51,9 +51,10 @@ const main = async () => {
             resave: false,
         })
     );
+
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [UserResolver],
+           resolvers: [path.join(__dirname, './resolvers/*.js')],
         }),
         context: ({ req, res }): MyContext => ({ req, res, redis }),
         plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],

@@ -13,50 +13,39 @@ import { COKKIE_NAME } from '../constants';
 import UserModel, { User } from '../models/UserModel';
 import MyContext from '../types';
 import validateRegister from '../utils/validateRegister';
-
 @ObjectType()
 export class FieldError {
     @Field()
     field!: string;
-
     @Field()
     message!: string;
 }
-
 @ObjectType()
 class UserResponse {
     @Field(() => [FieldError], { nullable: true })
     errors?: FieldError[];
-
     @Field(() => User, { nullable: true })
     user?: User;
 }
-
 @InputType()
 export class RegisterInput {
     @Field()
     username!: string;
-
     @Field()
     email!: string;
-
     @Field()
     password!: string;
 }
-
 @Resolver()
 export default class UserResolver {
     @Query(() => User, { nullable: true })
     async me(@Ctx() { req }: MyContext): Promise<User | null> {
-        console.log(req.session);
-        console.log(req.session.userId);
         if (!req.session.userId) {
             return null;
         }
         const user = await UserModel.findById(req.session.userId);
         return user;
     }
-
     // registration
     @Mutation(() => UserResponse)
     async register(
@@ -64,14 +53,11 @@ export default class UserResolver {
         @Ctx() { req }: MyContext
     ): Promise<UserResponse> {
         const errors = validateRegister(registerInput);
-
         if (errors) {
             return { errors };
         }
-
         const hashPassword = await argon2.hash(registerInput.password);
         let user;
-
         try {
             user = await UserModel.create({
                 ...registerInput,
@@ -92,12 +78,10 @@ export default class UserResolver {
                 };
             }
         }
-
         // redirect: login after registration
         req.session.userId = user?._id;
         return { user };
     }
-
     // login
     @Mutation(() => UserResponse)
     async login(
@@ -151,12 +135,9 @@ export default class UserResolver {
                 ],
             };
         }
-
         req.session.userId = user.id;
-
         return { user };
     }
-
     // logout
     @Mutation(() => Boolean)
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
