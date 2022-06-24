@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.husky",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\graphql",
+    "\\client\\src\\graphql\\fragments",
+    "\\client\\src\\graphql\\queries",
     "\\server",
-    "\\server\\src",
     "\\server\\src\\models",
     "\\server\\src\\resolvers",
     "\\server\\src\\utils"
   ],
-  "SelectedNode": "\\server\\src\\resolvers\\UserResolver.ts",
+  "SelectedNode": "\\client\\src\\graphql\\fragments",
   "PreviewInSolutionExplorer": false
 }

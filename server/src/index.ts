@@ -12,7 +12,6 @@ import { buildSchema } from 'type-graphql';
 import connectDB from './config/db';
 import { COKKIE_NAME, __prod__ } from './constants';
 import MyContext from './types';
-
 declare module 'express-session' {
     interface SessionData {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,7 +40,7 @@ const main = async () => {
             name: COKKIE_NAME,
             store: new RedisStore({ client: redis, disableTouch: true }),
             cookie: {
-                maxAge: 1000 * 60 * 30,
+                maxAge: 1000 * 60 * 60 * 24,
                 httpOnly: true,
                 secure: __prod__,
                 sameSite: 'lax', // csrf
@@ -51,10 +50,9 @@ const main = async () => {
             resave: false,
         })
     );
-
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
-           resolvers: [path.join(__dirname, './resolvers/*.js')],
+            resolvers: [path.join(__dirname, './resolvers/*.js')],
         }),
         context: ({ req, res }): MyContext => ({ req, res, redis }),
         plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
