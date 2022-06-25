@@ -5,12 +5,11 @@
     "\\client\\src",
     "\\client\\src\\graphql",
     "\\client\\src\\graphql\\fragments",
+    "\\client\\src\\graphql\\mutations",
     "\\client\\src\\graphql\\queries",
-    "\\server",
-    "\\server\\src\\models",
-    "\\server\\src\\resolvers",
-    "\\server\\src\\utils"
+    "\\client\\src\\utils",
+    "\\server\\src"
   ],
-  "SelectedNode": "\\client\\src\\graphql\\fragments",
+  "SelectedNode": "\\client\\src\\utils\\useIsAuth.ts",
   "PreviewInSolutionExplorer": false
 }
