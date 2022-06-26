@@ -3,13 +3,10 @@
     "",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\graphql",
-    "\\client\\src\\graphql\\fragments",
-    "\\client\\src\\graphql\\mutations",
     "\\client\\src\\graphql\\queries",
-    "\\client\\src\\utils",
-    "\\server\\src"
+    "\\client\\src\\Pages",
+    "\\server"
   ],
-  "SelectedNode": "\\client\\src\\utils\\useIsAuth.ts",
+  "SelectedNode": "\\client\\src\\Pages\\Board.tsx",
   "PreviewInSolutionExplorer": false
 }

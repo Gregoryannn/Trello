@@ -12,7 +12,6 @@ import { buildSchema } from 'type-graphql';
 import connectDB from './config/db';
 import { COKKIE_NAME, __prod__ } from './constants';
 import MyContext from './types';
-
 declare module 'express-session' {
     interface SessionData {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,8 +33,13 @@ const main = async () => {
         })
     );
 
-const RedisStore = connectRedis(session);
-const redis = new Redis();
+    const RedisStore = connectRedis(session);
+    const redis = new Redis();
+    const redis = new Redis({
+        host: process.env.REDIS_HOST || '127.0.0.1',
+        port: 6379,
+    });
+
     // session
     app.use(
         session({
@@ -50,27 +54,25 @@ const redis = new Redis();
             saveUninitialized: false,
             secret: 'tr7878wedj#ekjfelioe8llo',
             resave: false,
-
         })
     );
-
-const apolloServer = new ApolloServer({
+    const apolloServer = new ApolloServer({
         schema: await buildSchema({
             resolvers: [path.join(__dirname, './resolvers/*.js')],
         }),
         context: ({ req, res }): MyContext => ({ req, res, redis }),
         plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-});
+    });
+    await apolloServer.start();
+    apolloServer.applyMiddleware({ app, cors: false });
 
-await apolloServer.start();
-apolloServer.applyMiddleware({ app, cors: false });
-const PORT = process.env.PORT || 8080;
+    const PORT = process.env.PORT || 8080;
 
-app.listen(PORT as number, 'localhost', () => {
+        app.listen(PORT as number, () => {
             console.log(
-                    `🚀 Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`
+                `🚀 Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`
             );
         });
-};
+    };
 
 main().catch((error) => console.log(error));
