@@ -2,11 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\client",
-    "\\client\\src",
-    "\\client\\src\\graphql\\queries",
     "\\client\\src\\Pages",
-    "\\server"
+    "\\server",
+    "\\server\\src",
+    "\\server\\src\\resolvers"
   ],
-  "SelectedNode": "\\client\\src\\Pages\\Board.tsx",
+  "SelectedNode": "\\server\\Dockerfile",
   "PreviewInSolutionExplorer": false
 }
